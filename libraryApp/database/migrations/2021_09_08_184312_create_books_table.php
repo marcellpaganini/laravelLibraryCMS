@@ -17,9 +17,8 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('title');
-            $table->timestamps('published_date');
             $table->integer('ISBN');
+            $table->timestamps();
         });
     }
 
