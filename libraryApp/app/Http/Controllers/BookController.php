@@ -13,7 +13,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('book',['books'=>$books, 'layout'=>'index']);
     }
 
     /**
@@ -23,7 +24,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $books = Book::all();
+        return view('book',['books'=>$books, 'layout'=>'index']);
     }
 
     /**
@@ -34,7 +36,12 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book();
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->ISBN = $request->input('ISBN');
+        $book->save();
+        return redirect('/');
     }
 
     /**
@@ -45,7 +52,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::find($id);
+        $books = Book::all();
+        return view('book',['books'=>$books, 'book'=>$book, 'layout'=>'show']);
     }
 
     /**
@@ -56,7 +65,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        $books = Book::all();
+        return view('book',['books'=>$books, 'book'=>$book, 'layout'=>'edit']);
     }
 
     /**
@@ -68,7 +79,12 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->ISBN = $request->input('ISBN');
+        $book->save();
+        return redirect('/');
     }
 
     /**
@@ -79,6 +95,8 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $student->delete();
+        return redirect('/');
     }
 }

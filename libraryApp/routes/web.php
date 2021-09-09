@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/',"BookController@index");
+Route::get('/edit/{id}',"BookController@edit");
+Route::get('/show/{id}',"BookController@show");
+Route::get('/create',"BookController@create");
+Route::post('/store',"BookController@store");
+Route::post('/update/{id}',"BookController@update");
+
