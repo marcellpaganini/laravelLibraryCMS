@@ -7,19 +7,28 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-    <title>Library Management System</title>
+    <title>Library App</title>
   </head>
   <body>
-  @include("navbar")  
+    @include("navbar")
+    
+    <div class="row header-container justify-content-center">
+        <div class="header">
+            <h1>Book Management System</h1>
+        </div>
+    </div>
+
 
     @if($layout == 'index')
         <div class="container-fluid mt-4">
-            <div class="row">
-                <section class="col">
-                    @include("bookslist")
-                </section>
-                <section class="col-md-5"></section>
+            <div class="container-fluid mt-4">
+                <div class="row justify-content-center">
+                    <section class="col-md-7">
+                        @include("bookslist")
+                    </section>
+                </div>
             </div>
         </div>    
     @elseif($layout == 'create')
@@ -61,7 +70,25 @@
                 <section class="col">
                     @include("bookslist")
                 </section>
-                <section class="col-md-5"></section>
+                <section class="col-md-5">
+                    <form action="{{ url('/update/' .$book->id) }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label>Title:</label>&ensp;
+                            <label>{{ $book->title }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Author:</label>&ensp;
+                            <label>{{ $book->author }}</label>
+                        </div>
+                        <div class="form-group">
+                            <label>ISBN:</label>&ensp;
+                            <label>{{ $book->ISBN }}</label>
+                        </div>
+                        <input type="submit" class="btn btn-info" value="Update">
+                        <input type="submit" class="btn btn-warning" value="Reset">
+                    </form>    
+                </section>
             </div>
         </div>
     @elseif($layout == 'edit')
@@ -93,6 +120,7 @@
         </div>
     @endif
 
+    <footer></footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
